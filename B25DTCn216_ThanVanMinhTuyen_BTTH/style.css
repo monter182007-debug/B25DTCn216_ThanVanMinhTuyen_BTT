@@ -1,0 +1,313 @@
+/* Thiết lập cơ bản cho theme tối */
+:root {
+  --bg-color: #0c121e;
+  --text-color: #ffffff;
+  --primary-color: #3498db;
+  --success-color: #2ecc71;
+  --error-color: #e74c3c;
+  --warning-color: #f1c40f;
+  --info-color: #3498db;
+  --panel-bg: #141b29;
+  --toast-bg: #111827;
+  --border-color: #2a364d;
+  --font-main: "Arial", "Segoe UI", sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.dark-theme {
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* App Header */
+.app-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.app-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.app-header h2 {
+  font-size: 1.2rem;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+/* Demo Area */
+.demo-area {
+  background-color: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  width: 600px;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.demo-header {
+  margin-bottom: 20px;
+  color: #8899aa;
+  font-size: 0.9rem;
+  font-family: var(--font-mono);
+}
+
+.live-status::before {
+  content: "●";
+  color: #00ff00;
+  margin-right: 8px;
+  font-size: 1.1rem;
+}
+
+.demo-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+button.btn {
+  padding: 15px 25px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+  opacity: 0.9;
+}
+
+button.btn:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+button.btn:active {
+  transform: translateY(1px);
+}
+
+button.btn .icon {
+  font-size: 1.4rem;
+}
+
+/* Button variants based on type */
+button.btn.success {
+  background-color: #1e6d42;
+  border: 1px solid var(--success-color);
+}
+button.btn.error {
+  background-color: #692d24;
+  border: 1px solid var(--error-color);
+}
+button.btn.info {
+  background-color: #21516f;
+  border: 1px solid var(--info-color);
+}
+button.btn.warning {
+  background-color: #63501a;
+  border: 1px solid var(--warning-color);
+  color: #fff;
+}
+
+/* App Controls */
+.app-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#position-selector {
+  padding: 10px;
+  background-color: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  border-radius: 5px;
+  font-family: var(--font-main);
+}
+
+/* KHU VỰC CHỨA TOAST */
+.toast-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column; /* Các toast tự xếp hàng dọc */
+  gap: 10px;
+  z-index: 10000;
+  max-height: 100vh;
+  overflow-y: auto; /* Cho phép cuộn nếu quá nhiều */
+  pointer-events: none; /* Container không cản trở tương tác */
+}
+
+/* 4 vị trí hiển thị */
+.top-right {
+  top: 20px;
+  right: 20px;
+}
+.top-left {
+  top: 20px;
+  left: 20px;
+}
+.bottom-right {
+  bottom: 20px;
+  right: 20px;
+  flex-direction: column-reverse;
+}
+.bottom-left {
+  bottom: 20px;
+  left: 20px;
+  flex-direction: column-reverse;
+}
+
+/* STYLE TỪNG TOAST - SLEEK & MODERN */
+.toast {
+  width: 380px;
+  padding: 15px;
+  background-color: var(--toast-bg);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  display: grid;
+  grid-template-columns: 40px 1fr 20px;
+  align-items: center;
+  gap: 10px;
+  pointer-events: auto; /* Cho phép tương tác */
+
+  /* Hiệu ứng trượt vào */
+  animation: sleekIn 0.5s ease forwards;
+
+  /* Viền dưới cùng tỏa sáng theo loại */
+  border-bottom: 2px solid;
+  position: relative;
+  overflow: hidden;
+}
+
+.toast::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
+  z-index: -1;
+}
+
+/* Toast types */
+.toast.success {
+  border-bottom-color: var(--success-color);
+}
+.toast.error {
+  border-bottom-color: var(--error-color);
+}
+.toast.info {
+  border-bottom-color: var(--info-color);
+}
+.toast.warning {
+  border-bottom-color: var(--warning-color);
+}
+
+/* Icons inside toasts with glow */
+.toast .toast-icon {
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 0 10px currentColor; /* Hiệu ứng glow */
+}
+
+.toast.success .toast-icon {
+  color: var(--success-color);
+}
+.toast.error .toast-icon {
+  color: var(--error-color);
+}
+.toast.info .toast-icon {
+  color: var(--info-color);
+}
+.toast.warning .toast-icon {
+  color: var(--warning-color);
+}
+
+/* Text area */
+.toast-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.toast-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.toast-message {
+  font-size: 0.95rem;
+  color: #aab;
+}
+
+/* Close button X */
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: #778;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #fff;
+}
+
+/* Hiệu ứng trượt vào (modern scale and slide) */
+@keyframes sleekIn {
+  0% {
+    transform: translate(50%, -20%) scale(0.8);
+    opacity: 0;
+  }
+  70% {
+    transform: translate(0%, 5%) scale(1.03);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Hiệu ứng mờ dần và thu nhỏ khi ẩn */
+.toast.hide {
+  animation: sleekOut 0.4s ease forwards;
+}
+
+@keyframes sleekOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}

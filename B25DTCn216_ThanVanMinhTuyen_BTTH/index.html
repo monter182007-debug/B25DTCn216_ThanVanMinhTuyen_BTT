@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toast Notification System</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="dark-theme">
+    <header class="app-header">
+      <h1>K25_CNTT_HN</h1>
+      <h2>Toast Notification System</h2>
+    </header>
+
+    <section class="demo-area">
+      <div class="demo-header">
+        <span class="live-status">LIVE DEMO - TRIGGER TOASTS</span>
+      </div>
+      <div class="demo-buttons">
+        <button id="btn-success" class="btn success">
+          <span class="icon">✓</span> Success
+        </button>
+        <button id="btn-error" class="btn error">
+          <span class="icon">×</span> Error
+        </button>
+        <button id="btn-info" class="btn info">
+          <span class="icon">ℹ</span> Info
+        </button>
+        <button id="btn-warning" class="btn warning">
+          <span class="icon">⚠</span> Warning
+        </button>
+      </div>
+    </section>
+
+    <div class="app-controls">
+      <label for="position-selector">Vị trí: </label>
+      <select id="position-selector">
+        <option value="top-right">Góc trên - Phải</option>
+        <option value="top-left">Góc trên - Trái</option>
+        <option value="bottom-right">Góc dưới - Phải</option>
+        <option value="bottom-left">Góc dưới - Trái</option>
+      </select>
+    </div>
+
+    <div id="toast-container" class="toast-container top-right"></div>
+
+    <script src="./scrpit.js"></script>
+  </body>
+</html>
